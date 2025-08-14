@@ -66,3 +66,84 @@
   font-size: 0.8rem;
   font-weight: bold;
 }
+/* Burger icon */
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 20px;
+  width: 26px;
+  cursor: pointer;
+  z-index: 1100; /* above menu */
+}
+
+.burger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: white;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* Burger animation when active */
+.burger.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(8px);
+}
+
+.burger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-8px);
+}
+
+/* Mobile view styles */
+@media (max-width: 768px) {
+  .burger {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(15px);
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    padding: 0; /* will be set in animation */
+    gap: 1rem;
+    overflow: hidden;
+
+    /* Animation defaults */
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition:
+      max-height 0.4s ease,
+      opacity 0.4s ease,
+      transform 0.4s ease,
+      padding 0.3s ease;
+  }
+
+  .nav-links.open {
+    max-height: 300px; /* Height enough to show items */
+    opacity: 1;
+    transform: translateY(0);
+    padding: 1rem 2rem;
+  }
+
+  .nav-link {
+    width: 100%;
+    padding: 0.8rem 0;
+    font-size: 1.1rem;
+    transition: color 0.3s ease, background 0.3s ease;
+  }
+
+  .nav-link:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+}
